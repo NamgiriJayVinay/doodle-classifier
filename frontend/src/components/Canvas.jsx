@@ -1,9 +1,9 @@
 // canvas.js
 
-import React, { Component } from 'react';
+import React from 'react';
 import Proptypes from 'prop-types';
 
-class Canvas extends Component {
+class Canvas extends React.Component {
 
   isPainting = false;
   line = [];

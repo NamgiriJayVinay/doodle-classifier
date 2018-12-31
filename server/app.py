@@ -1,12 +1,45 @@
+import json
+import random
+import os
 from flask import Flask, render_template, jsonify, request
 from methods import DoodleClassifier
-import random
 
 
 classifier = DoodleClassifier()
 
-app = Flask(__name__)
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+
+def create_app(settings_override=None):
+
+    app = Flask(__name__,
+                static_folder='./build/public',
+                static_url_path='/public')
+
+    params = {
+        'DEBUG': True,
+        'WEBPACK_MANIFEST_PATH': './build/manifest.json'
+    }
+
+    app.config.update(params)
+
+    if settings_override:
+        app.config.update(settings_override)
+
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+
+    with open(os.path.join(base_dir, app.config['WEBPACK_MANIFEST_PATH'])) as f:
+        asset_map = json.load(f)
+
+    @app.context_processor
+    def utility_processor():
+        def manifest_url_for(asset):
+            return asset_map[asset]
+
+        return dict(manifest_url_for=manifest_url_for)
+
+    return app
+
+
+app = create_app()
 
 
 @app.route('/')
@@ -30,5 +63,5 @@ def doodle_prediction():
 
 
 if __name__ == '__main__':
-    app.config.from_object('configurations.DevelopmentConfig')
-    app.run()
+
+    app.run(use_reloader=True, use_debugger=True)

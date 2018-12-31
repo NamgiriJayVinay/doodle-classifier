@@ -5,6 +5,9 @@
   </head>
   <body>
     <div id="root"></div>
-    <script src="{{ url_for('static', filename='bundle.js') }}"></script>
+    <div>
+        <script src="{{ manifest_url_for("main.js") }}"></script>
+        <script src="{{ manifest_url_for("vendor.js") }}"></script>
+    </div>
   </body>
 </html>
