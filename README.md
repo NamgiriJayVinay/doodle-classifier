@@ -32,3 +32,12 @@ There is already a bundled version of the front-end React app in `server/static/
   
 - view app at `http://localhost:5000/`
 
+__How to build React bundle__
+
+- cd into the front end directory
+
+- run `npm install` to restore node packages
+
+- to build development bundle for flask run `npm run dev`
+
+- to watch frontend files and rebuild `bundle.js` automatically run `npm run watch`
