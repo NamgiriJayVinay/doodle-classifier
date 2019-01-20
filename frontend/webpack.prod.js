@@ -1,14 +1,72 @@
 const path = require('path');
-const webpack = require('webpack');
-const merge = require('webpack-merge');
-const common = require('./webpack.common.js');
-//const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-//const CompressionPlugin = require('compression-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 
-module.exports = merge(common, {
+module.exports = {
+  mode: "production",
+
+  entry: "./src/index.tsx",
+
+
+  output: {
+    path: path.resolve(__dirname, "../server/public/"),
+    filename: "[name].bundle.[chunkhash].js",
+    publicPath: "public/"
+  },
+
+
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".json"]
+  },
+
+
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.js$/,
+        use: ["source-map-loader"],
+        enforce: "pre"
+      },
+      {
+        test: /\.(css)$/,
+        exclude: /node_modules/,
+        use: ["style-loader", "css-loader"]
+      },
+      // {
+      //   test: /\.svg$/,
+      //   loader: 'svg-inline-loader'
+      // },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+        loader: "file-loader"
+      }
+    ]
+  },
+
+
   plugins: [
+    new CleanWebpackPlugin(['public'], {
+      root: __dirname + '/../server'
+    }
+    ),
+    new ManifestPlugin()
   ],
-  mode: 'production',
-  devtool: 'source-map'
-});
+
+
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendor",
+          chunks: "initial"
+        }
+      }
+    }
+  }
+};

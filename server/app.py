@@ -3,7 +3,8 @@ import random
 import os
 from flask import Flask, render_template, jsonify, request
 from methods import DoodleClassifier
-
+from flask_cors import CORS
+from flask_debugtoolbar import DebugToolbarExtension
 
 classifier = DoodleClassifier()
 
@@ -11,12 +12,19 @@ classifier = DoodleClassifier()
 def create_app(settings_override=None):
 
     app = Flask(__name__,
-                static_folder='./build/public',
+                static_folder='./public',
                 static_url_path='/public')
+
+    cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+    debug_toolbar = DebugToolbarExtension()
 
     params = {
         'DEBUG': True,
-        'WEBPACK_MANIFEST_PATH': './build/manifest.json'
+        'WEBPACK_MANIFEST_PATH': './public/manifest.json',
+        'SECRET_KEY': 'NOTSOSECRET',
+        'DEBUG_TB_PROFILER_ENABLED': True,
+        'DEBUG_TB_TEMPLATE_EDITOR_ENABLED': True
     }
 
     app.config.update(params)
@@ -35,6 +43,8 @@ def create_app(settings_override=None):
             return asset_map[asset]
 
         return dict(manifest_url_for=manifest_url_for)
+
+    debug_toolbar.init_app(app)
 
     return app
 
@@ -64,4 +74,4 @@ def doodle_prediction():
 
 if __name__ == '__main__':
 
-    app.run(use_reloader=True, use_debugger=True)
+    app.run('0.0.0.0', use_reloader=True, use_debugger=True)
