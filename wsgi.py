@@ -48,21 +48,21 @@ def create_app(settings_override=None):
     return app
 
 
-app = create_app()
+application = create_app()
 
 
-@app.route('/')
+@application.route('/')
 def index():
     return render_template('index.jinja2')
 
 
-@app.route('/api/sample-words/<int:n>')
+@application.route('/api/sample-words/<int:n>')
 def sample_labels(n):
     sample = random.sample(classifier.labels, n)
     return jsonify(sample)
 
 
-@app.route('/api/doodle-prediction', methods=['POST'])
+@application.route('/api/doodle-prediction', methods=['POST'])
 def doodle_prediction():
     data = request.json
     strokes = data['strokes']
@@ -73,4 +73,4 @@ def doodle_prediction():
 
 if __name__ == '__main__':
 
-    app.run('0.0.0.0', use_reloader=True, use_debugger=True)
+    application.run('0.0.0.0', use_reloader=True, use_debugger=True)
