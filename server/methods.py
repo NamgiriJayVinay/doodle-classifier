@@ -13,7 +13,7 @@ class DoodleClassifier(object):
     def __init__(self):
         self.model = tf.contrib.saved_model.load_keras_model('server/data/model')
         self.model._make_predict_function()
-        self.labels = json.load(open('data/labels.txt'))
+        self.labels = json.load(open('server/data/labels.txt'))
 
     def draw_cv2(self, raw_strokes, lw=6, time_color=True):
         img = np.zeros((self.BASE_SIZE, self.BASE_SIZE), np.uint8)
