@@ -11,7 +11,7 @@ classifier = DoodleClassifier()
 def create_app(settings_override=None):
 
     app = Flask(__name__,
-                static_folder='./public',
+                static_folder='.server/public',
                 static_url_path='/public')
 
     #cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
@@ -20,7 +20,7 @@ def create_app(settings_override=None):
 
     params = {
         'DEBUG': False,
-        'WEBPACK_MANIFEST_PATH': './public/manifest.json',
+        'WEBPACK_MANIFEST_PATH': '.server/public/manifest.json',
         'SECRET_KEY': 'NOTSOSECRET',
         'DEBUG_TB_PROFILER_ENABLED': False,
         'DEBUG_TB_TEMPLATE_EDITOR_ENABLED': False
