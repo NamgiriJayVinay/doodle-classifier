@@ -21,7 +21,6 @@ export const initialState: LayoutState = {
 };
 
 export const LayoutReducer: Reducer<LayoutState, LayoutAction> = (state=initialState, action) => {
-    console.log(action, state);
     switch (action.type) {
         case 'TIMER_START': {
             return {

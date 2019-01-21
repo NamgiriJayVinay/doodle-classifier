@@ -34,8 +34,6 @@ const rootReducer = combineReducers<StoreState>({
 //     return finalState
 // };
 
-// const logicMiddleware = createLogicMiddleware(arrLogic);
-
 
 function configureStore(initialState?: StoreState) {
     return createStore(

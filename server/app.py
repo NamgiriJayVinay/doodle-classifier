@@ -20,11 +20,11 @@ def create_app(settings_override=None):
     debug_toolbar = DebugToolbarExtension()
 
     params = {
-        'DEBUG': True,
+        'DEBUG': False,
         'WEBPACK_MANIFEST_PATH': './public/manifest.json',
         'SECRET_KEY': 'NOTSOSECRET',
-        'DEBUG_TB_PROFILER_ENABLED': True,
-        'DEBUG_TB_TEMPLATE_EDITOR_ENABLED': True
+        'DEBUG_TB_PROFILER_ENABLED': False,
+        'DEBUG_TB_TEMPLATE_EDITOR_ENABLED': False
     }
 
     app.config.update(params)
