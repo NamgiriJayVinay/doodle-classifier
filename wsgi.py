@@ -2,12 +2,11 @@ import json
 import random
 import os
 from flask import Flask, render_template, jsonify, request
-from methods import DoodleClassifier
+from server.methods import DoodleClassifier
 #from flask_cors import CORS
-#from flask_debugtoolbar import DebugToolbarExtension
+from flask_debugtoolbar import DebugToolbarExtension
 
 classifier = DoodleClassifier()
-
 
 def create_app(settings_override=None):
 
@@ -15,7 +14,7 @@ def create_app(settings_override=None):
                 static_folder='./public',
                 static_url_path='/public')
 
-    cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+    #cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
     debug_toolbar = DebugToolbarExtension()
 
@@ -44,7 +43,7 @@ def create_app(settings_override=None):
 
         return dict(manifest_url_for=manifest_url_for)
 
-    debug_toolbar.init_app(app)
+    #debug_toolbar.init_app(app)
 
     return app
 
