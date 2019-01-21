@@ -20,7 +20,7 @@ export type PredictionAction =
 export function fetchPrediction(strokes: number[][][]) {
     return (dispatch: Dispatch<PredictionAction>) => {
         dispatch(action('PREDICTION_REQUEST', {strokes}));
-        return axios.post('http://localhost:5000/api/doodle-prediction', {strokes, n:1})
+        return axios.post('/api/doodle-prediction', {strokes, n:1})
             .then((res: {data: Prediction[]}) => {
                 dispatch(action('PREDICTION_SUCCESS', {prediction: res.data}));
             })

@@ -29,7 +29,7 @@ export const stopTimer = ():TimerAction => action('TIMER_STOP');
 export function newGame(totalRounds: number) {
     return (dispatch: Dispatch<NewGameAction>) => {
         dispatch(action('NEW_GAME_REQUEST'));
-        return axios.get('http://localhost:5000/api/sample-words/' + String(totalRounds))
+        return axios.get('/api/sample-words/' + String(totalRounds))
             .then(res => {
                 const rounds = res.data.map((word:string, i:number):Round => (
                     {id: i+1, word: word.replace(/_/g,' '), prediction: '...', strokes: []}));

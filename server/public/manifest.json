@@ -1,14 +1,9 @@
 {
-  "main.js": "public/main.bundle.dbfe6948b132f5567662.js",
-  "vendor.js": "public/vendor.bundle.d6a25af8e518adbcec00.js",
-  "buttons_small.svg": "public/03f8ddeb6d6f6a6c67f1bfae5757b391.svg",
-  "icons.svg": "public/0ce730249b4daf9c395194a65030ef7a.svg",
-  "handwritten03.otf": "public/1b71f036eb86eace890591a5a1c3a694.otf",
-  "handwritten01.otf": "public/462395f4378df8387ba1a7c55fb817cb.otf",
-  "objects.svg": "public/6664e00f6a182423c96952b2e3984915.svg",
-  "buttons_medium.svg": "public/68b8c19c004f31fe5727c7d02256097c.svg",
-  "handwritten02.otf": "public/7311f77dda67b79183d351d389bbd8de.otf",
-  "buttons_drawing.svg": "public/c68e44a5e76468cd6bdc113043d99290.svg",
-  "buttons_large.svg": "public/d4167aa3b7b91e6258dbfde01e87d79d.svg",
-  "line.svg": "public/e065884e676406f9cff7b9b5d8c8f442.svg"
+  "main.js": "public/main.bundle.0c2a412d.js",
+  "main.js.map": "public/main.bundle.0c2a412d.js.map",
+  "vendor.js": "public/vendor.bundle.c73e6f21.js",
+  "vendor.js.map": "public/vendor.bundle.c73e6f21.js.map",
+  "media/handwritten01.otf": "public/media/handwritten01.462395f4.otf",
+  "media/handwritten02.otf": "public/media/handwritten02.7311f77d.otf",
+  "media/handwritten03.otf": "public/media/handwritten03.1b71f036.otf"
 }
