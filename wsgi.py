@@ -12,7 +12,8 @@ def create_app(settings_override=None):
 
     app = Flask(__name__,
                 static_folder='./server/public',
-                static_url_path='/public')
+                static_url_path='/public',
+                template_folder='./server/templates')
 
     #cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
